@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="slide-fade">
+    <transition name="fade">
       <router-view></router-view>
     </transition>
   </div>
@@ -13,28 +13,21 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  .slide-fade {
-    position: absolute;
-    left: 0;
-    right: 0;
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.5s ease;
   }
-  .slide-fade-enter-active {
-    transition: all 1.2s ease;
+  .fade-enter {
+    transform: translateX(100%);
   }
-  .slide-fade-leave-active {
-    transition: all 0.1s cubic-bezier(2, 0.5, 0.8, 1);
-  }
-  .slide-fade-enter,
-  .slide-fade-leave-to {
-    left: 0;
-    right: 0;
-    transform: translateX(50px);
-    opacity: 0;
+  .fade-leave-to {
+    transform: translateX(-100%);
   }
 }
 
 .page {
   padding: 200px 0;
+  position: fixed;
   .list {
     width: 720px;
     list-style: none;
