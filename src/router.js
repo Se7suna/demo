@@ -14,27 +14,32 @@ export default new Router({
     {
       path: '/1',
       name: 'page1',
-      component: page1
+      component: page1,
+      meta: { index: 1 }
     },
     {
       path: '/2',
       name: 'page2',
-      component: page2
+      component: page2,
+      meta: { index: 2 }
     },
     {
       path: '/3',
       name: 'page3',
-      component: page3
+      component: page3,
+      meta: { index: 3 }
     },
     {
       path: '/4',
       name: 'page4',
-      component: page4
+      component: page4,
+      meta: { index: 4 }
     },
     {
       path: '/5',
       name: 'page5',
-      component: page5
+      component: page5,
+      meta: { index: 5 }
     }
   ]
 })
