@@ -1,8 +1,15 @@
 <template>
   <div id="app">
-    <transition :name="direction">
+    <ul class="handle">
+      <li class="handle-item" @click="handle1(1)">push1</li>
+      <li class="handle-item" @click="handle1(2)">push2</li>
+      <li class="handle-item" @click="handle1(3)">push3</li>
+      <li class="handle-item" @click="handle1(4)">push4</li>
+    </ul>
+    <!-- <div v-for="item of list">{{item}}</div> -->
+    <!-- <transition :name="direction">
       <router-view></router-view>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -11,15 +18,21 @@ export default {
   data () {
     return {
       index: 0,
-      direction: ''
+      direction: '',
+      list: []
     }
   },
-  watch: {
-    '$route.name': function () {
-      this.direction = this.$route.meta.index > this.index ? 'right' : 'left'
-      this.index = this.$route.meta.index
+  methods: {
+    handle1 (type) {
+      this.list.push(type)
     }
   },
+  // watch: {
+  // '$route.name': function () {
+  //   this.direction = this.$route.meta.index > this.index ? 'right' : 'left'
+  //   this.index = this.$route.meta.index
+  // }
+  // },
   mounted () {
     this.index = this.$route.meta.index
   }
@@ -38,24 +51,24 @@ export default {
   margin: 100px auto;
   position: relative;
   overflow: hidden;
-  .left-enter-active,
-  .left-leave-active,
-  .right-enter-active,
-  .right-leave-active {
-    transition: all 0.5s ease;
-  }
-  .right-enter {
-    transform: translateX(100%);
-  }
-  .right-leave-to {
-    transform: translateX(-100%);
-  }
-  .left-enter {
-    transform: translateX(-100%);
-  }
-  .left-leave-to {
-    transform: translateX(100%);
-  }
+  // .left-enter-active,
+  // .left-leave-active,
+  // .right-enter-active,
+  // .right-leave-active {
+  //   transition: all 0.5s ease;
+  // }
+  // .right-enter {
+  //   transform: translateX(100%);
+  // }
+  // .right-leave-to {
+  //   transform: translateX(-100%);
+  // }
+  // .left-enter {
+  //   transform: translateX(-100%);
+  // }
+  // .left-leave-to {
+  //   transform: translateX(100%);
+  // }
 }
 
 .page {
@@ -91,5 +104,11 @@ export default {
     color: #fff;
     background-color: darken(#87e8de, 25%);
   }
+}
+
+.handle-item {
+  padding: 20px 0;
+  background-color: #87e8de;
+  margin-top: 20px;
 }
 </style>
