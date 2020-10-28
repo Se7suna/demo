@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <transition :name="direction">
-      <router-view></router-view>
-    </transition>
+    <ul class="handle">
+      <li class="handle-item" @click="handle(1)">push1</li>
+      <li class="handle-item" @click="handle(2)">push2</li>
+      <li class="handle-item" @click="handle(3)">push3</li>
+      <li class="handle-item" @click="handle(4)">push4</li>
+    </ul>
   </div>
 </template>
 
@@ -10,18 +13,13 @@
 export default {
   data () {
     return {
-      index: 0,
-      direction: ''
+      list: []
     }
   },
-  watch: {
-    '$route.name': function () {
-      this.direction = this.$route.meta.index > this.index ? 'right' : 'left'
-      this.index = this.$route.meta.index
+  methods: {
+    handle (type) {
+      this.list.push(type)
     }
-  },
-  mounted () {
-    this.index = this.$route.meta.index
   }
 }
 </script>
@@ -38,58 +36,10 @@ export default {
   margin: 100px auto;
   position: relative;
   overflow: hidden;
-  .left-enter-active,
-  .left-leave-active,
-  .right-enter-active,
-  .right-leave-active {
-    transition: all 0.5s ease;
-  }
-  .right-enter {
-    transform: translateX(100%);
-  }
-  .right-leave-to {
-    transform: translateX(-100%);
-  }
-  .left-enter {
-    transform: translateX(-100%);
-  }
-  .left-leave-to {
-    transform: translateX(100%);
-  }
 }
-
-.page {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  .list {
-    width: 720px;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-  }
-  .list-item {
-    flex: 1;
-    text-align: center;
-    margin: 0 10px;
-    padding: 20px 0;
-    background-color: #87e8de;
-    border-radius: 8px;
-    cursor: pointer;
-    &:hover {
-      color: #fff;
-      background-color: darken(#87e8de, 25%);
-    }
-  }
-  .active {
-    color: #fff;
-    background-color: darken(#87e8de, 25%);
-  }
+.handle-item {
+  padding: 20px 0;
+  background-color: #87e8de;
+  margin-top: 20px;
 }
 </style>
